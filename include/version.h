@@ -1,0 +1,7 @@
+#ifndef USERVERSION
+#define USERVERSION
+#define USER_MAJOR_VERSION 2
+#define USER_MINOR_VERSION 0
+#define USER_BETA_VERSION 0
+
+#endif

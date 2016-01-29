@@ -1,0 +1,10 @@
+#you can use static_libs=1/0 ,to build static lib or dynamiclib
+include $(USER_ROOT)/make/makeinclude/macros.GNU
+MYBIN=processB
+MYFILES = processB.cpp
+
+MYCPPFLAGS=
+MYLDFLAGS= 
+MYDLLLIB=
+include $(USER_ROOT)/make/makeinclude/allinone.GNU
+

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wfnxml>
+	<variable name="examplesapp" type="params" global="true"/>
+	<function name="init_app_params">
+		<set name="examplesapp" paramname="appwithipstack" value="true"/>
+	</function>
+</wfnxml>

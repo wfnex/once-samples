@@ -1,0 +1,3 @@
+include $(USER_ROOT)/make/makeinclude/macros.GNU
+MYDIRS= myapp mylib wfnosmain
+include $(USER_ROOT)/make/makeinclude/allinone.GNU

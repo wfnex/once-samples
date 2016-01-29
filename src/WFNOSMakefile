@@ -1,0 +1,3 @@
+include $(USER_ROOT)/make/makeinclude/macros.GNU
+MYDIRS= os subsystems
+include $(USER_ROOT)/make/makeinclude/allinone.GNU
