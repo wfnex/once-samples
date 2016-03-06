@@ -26,7 +26,7 @@ all: check_dir $(buidlall)
 	make -C $(USER_ROOT) -f WFNOSMakefile
 	cp -Lf $(USER_ROOT)/bin/* $(PRJDIR)/$(PROJECT_NAME)/bin/
 	cp -Lf $(USER_ROOT)/libs/* $(PRJDIR)/$(PROJECT_NAME)/libs/
-	cp -rf $(USER_ROOT)/vbng_app_map.xml $(PRJDIR)/$(PROJECT_NAME)/scripts/
+	cp -rf $(USER_ROOT)/scripts/example_app_map.xml $(PRJDIR)/$(PROJECT_NAME)/scripts/
 	cp -rf $(USER_ROOT)/LICENSE $(PRJDIR)/$(PROJECT_NAME)/
 	cp -rf $(USER_ROOT)/README $(PRJDIR)/$(PROJECT_NAME)/
 	cp -rf $(USER_ROOT)/AUTHORS $(PRJDIR)/$(PROJECT_NAME)/
