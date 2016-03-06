@@ -40,18 +40,16 @@ public:
             m_transport->SendData("i am CMyApp",strlen("i am CMyApp"));
         }
     }
-    virtual void OnReceive(
-        const char *rcvdata,
-        size_t datasize,
+    virtual void OnReceive(CAWMessageBlock &msg,
         IDIPCTransport *aTrptId)
     {
-        std::string str=std::string(rcvdata,datasize);
-        printf("CMyApp::OnReceive,str="); 
-        m_transport->SendData("i am CMyApp",strlen("i am CMyApp"));
+        //std::string str=std::string(rcvdata,datasize);
+        //printf("CMyApp::OnReceive,str="); 
+        //m_transport->SendData("i am CMyApp",strlen("i am CMyApp"));
     }
 
     virtual void OnDisconnect(
-                int aReason,
+                CAWResult aReason,
                 IDIPCTransport *aTrptId)
     {
         printf("CMyApp::OnDisconnect");  

@@ -29,19 +29,17 @@ public:
          aTrpt->OpenWithSink(this);
          //aTrpt->SendData("hello",strlen("hello"));
     }
-    virtual void OnReceive(
-        const char *rcvdata,
-        size_t datasize,
+    virtual void OnReceive(CAWMessageBlock& msg,
         IDIPCTransport *aTrptId)
     {
-        CAWString str(rcvdata,datasize);
-        SYSLOG_INFO("ProcessB::OnReceive,str="<<str); 
+        //CAWString str(rcvdata,datasize);
+        //SYSLOG_INFO("ProcessB::OnReceive,str="<<str); 
 
         //m_transport->SendData("i am processB",strlen("i am processB"));
     }
 
     virtual void OnDisconnect(
-                int aReason,
+                CAWResult aReason,
                 IDIPCTransport *aTrptId)
     {
         SYSLOG_INFO("ProcessB::OnDisconnect");  

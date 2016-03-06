@@ -42,18 +42,16 @@ public:
             m_transport->SendData("i am processA",strlen("i am processA"));
         }
     }
-    virtual void OnReceive(
-        const char *rcvdata,
-        size_t datasize,
+    virtual void OnReceive(CAWMessageBlock& msg,
         IDIPCTransport *aTrptId)
     {
-        CAWString str(rcvdata,datasize);
-        SYSLOG_INFO("ProcessA::OnReceive,str="<<str); 
-        m_transport->SendData("i am processA",strlen("i am processA"));
+        //CAWString str(rcvdata,datasize);
+        //SYSLOG_INFO("ProcessA::OnReceive,str="<<str); 
+       // m_transport->SendData("i am processA",strlen("i am processA"));
     }
 
     virtual void OnDisconnect(
-                int aReason,
+                CAWResult aReason,
                 IDIPCTransport *aTrptId)
     {
         SYSLOG_INFO("ProcessA::OnDisconnect");  
