@@ -1,7 +1,7 @@
 #ifndef CAPP_PROCESS_H
 #define CAPP_PROCESS_H
 #include "IOAM.h"
-#include "IDIPC.h"
+#include "dipc.h"
 #include "IONCEMain.h"
 #include "IPacketService.h"
 #include "IPSConnectionInterface.h"
@@ -90,7 +90,7 @@ CAWAutoPtr<IPSTransport> m_transport;
 };
 
 
-class CProcessAPP : public IONCEProcessSink 
+class CProcessAPP : public IDIPCProcessSink 
                      , public IOAMManagerSink
                      , public IPacketServiceProcess
                      , public IPSAcceptorConnectorSink
@@ -102,8 +102,9 @@ public:
     virtual ~CProcessAPP();
     
     //IWFNOSProcessSink
-    virtual void OnProcessRun(int argc, char ** argv);
+    virtual void OnProcessRun(int argc, char** argv, IDIPCProcess *dipcProcess);
     virtual void OnBackUpProcessConnected(CAWAutoPtr<IDIPCTransport> &transport);
+
 
     //IOAMManagerSink
     virtual int OnOAMStart();
@@ -129,6 +130,8 @@ private:
     CAWAutoPtr<IPSAcceptor> m_acceptor;
     CAcceptorTestAPP m_serversink;
     CPSTimerWrapperID m_timer;
+    IDIPCProcess *m_dipcProcess;
+    CAWAutoPtr<IDIPCTransport> m_backuptransport;
 };
 
 #endif // CIPOE_PROCESS_H

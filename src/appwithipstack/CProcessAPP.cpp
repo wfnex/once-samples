@@ -9,6 +9,7 @@ InitConfigDefaultParam params[]=
 
 CProcessAPP::CProcessAPP()
     :m_ipif(NULL)
+    ,m_dipcProcess(NULL)
 {
 }
 
@@ -17,18 +18,20 @@ CProcessAPP::~CProcessAPP()
 }
 
 //IWFNOSProcessSink
-void CProcessAPP::OnProcessRun(int argc, char ** argv)
+void CProcessAPP::OnProcessRun(int argc, char** argv, IDIPCProcess *dipcProcess)
 {
     printf("CProcessAPP::OnProcessRun\n");
+    m_dipcProcess = dipcProcess;
+    IOAMManager::Instance().StartOAM(dipcProcess, this);
 
-    IOAMManager::Instance().StartOAM(this);
-
-    IPacketService::Instance().Open(this);
+    IPacketService::Instance().Open(dipcProcess, this);
+    dipcProcess->ProcessRunFinishNotify();
 }
 
 void CProcessAPP::OnBackUpProcessConnected(CAWAutoPtr<IDIPCTransport> &transport)
 {
     printf("CProcessAPP::OnBackUpProcessConnected\n");
+    m_backuptransport=transport;
 }
 
 

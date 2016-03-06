@@ -91,6 +91,7 @@ CPPFLAGS     += -I$(USER_ROOT)/include -I$(ONCE_HOME)/include\
 -I$(ONCE_HOME)/include/wocal\
 -I$(ONCE_HOME)/include/wface\
 -I$(ONCE_HOME)/include/once\
+-I$(ONCE_HOME)/include/dipc\
 -I$(ONCE_HOME)/include/wfdb\
 -I$(ONCE_HOME)/include/tbb/tbb\
 -I$(ONCE_HOME)/include/soap

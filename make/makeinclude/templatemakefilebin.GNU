@@ -90,8 +90,8 @@ endif
 include $(USER_ROOT)/make/makeinclude/rules.local.GNU
 
 
-LDFLAGS      += -L. $(if $(ARCH),-L./$(ARCH)) -L$(USER_ROOT)/libs -L$(ONCE_HOME)/libs
-CPPFLAGS     += -I$(USER_ROOT)/include -I$(ONCE_HOME)/include\
+LDFLAGS      += -L. $(if $(ARCH),-L./$(ARCH)) -L$(USER_ROOT)/libs -L$(ONCE_HOME)/libs  -L$(ONCE_HOME)/dpdk/lib
+CPPFLAGS     += -I$(USER_ROOT)/include -I$(ONCE_HOME)/include  -I$(ONCE_HOME)/dpdk/include\
 -I$(ONCE_HOME)/include/cfgparser\
 -I$(ONCE_HOME)/include/dispatch\
 -I$(ONCE_HOME)/include/dpdk\
@@ -106,7 +106,7 @@ CPPFLAGS     += -I$(USER_ROOT)/include -I$(ONCE_HOME)/include\
 -I$(ONCE_HOME)/include/wfdb\
 -I$(ONCE_HOME)/include/tbb/tbb\
 -I$(ONCE_HOME)/include/soap\
--I$(ONCE_HOME)/include/xos
+-I$(ONCE_HOME)/include/dipc
 
 LDFLAGS		 += $(MYLDFLAGS)
 CPPFLAGS     += -DHAVE_LINUX_TYPES_H $(MYCPPFLAGS)
@@ -185,8 +185,8 @@ VLDLIBS +=-lm -lrt -lpthread -lutil -ldl -lcrypt -lssl -lcrypto -ljs -levent \
 	-ltbb -ltbbmalloc -ltbbmalloc_proxy\
 	-ljson -lrtc -lexpat -lglog \
 	-lACE\
-	-ldipc -lwface -lwocal -ldispatch -lcli -lcfgparser -lsoap -lipstack\
-	-lwfdb -loncesys -loam -lsyslog -lsysdb -lpacketservice -loncemain $(DPDKLIBS) $(MYDLLLIB)
+	-ldipc -lwface -lwocal -ldispatch -lcfgparser -lsoap -lipstack  -ltputils -ltransport\
+	-lwfdb -lonceutils -loam -lsyslog -lsysdb -lpacketservice -loncemain $(DPDKLIBS) $(MYDLLLIB)
 $(VBIN): $(addprefix $(VDIR), $(OBJS)) $(DEPLIBS)
   ifneq (,$(LINK.cc.override))
 	$(LINK.cc.override)

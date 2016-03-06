@@ -1,18 +1,4 @@
-/***********************************************************************
- * Copyright (C) 2013-2015, Nanjing WFNEX Network Technology Co., Ltd 
- * Description: 
- * Others:
- * Version:          V1.0
- * Author:           Yi Jian <yijian@wfnex.com>
- * Date:             2015-01-9
- *
- * History 1:
- *     Date:          
- *     Version:       
- *     Author:       
- *     Modification: 
-**********************************************************************/
-#include "IDIPC.h"
+#include "dipc.h"
 #include "IONCEMain.h"
 #include "CAWACEWrapper.h"
 #include "ISYSLOG.h"
@@ -20,18 +6,22 @@
 //using namespace ACEWrapperNS;
 using namespace std;
 
-class ProcessA : public IONCEProcessSink
+class ProcessA : public IDIPCProcessSink
     ,public IDIPCAcceptorConnectorSink
     ,public IDIPCTransportSink
     ,public CAWTimerWrapperIDSink
     
 {
 public:
-    virtual void OnProcessRun()
+    virtual void OnProcessRun(int argc, char** argv, IDIPCProcess *dipcProcess)
     {
         SYSLOG_INFO("ProcessA::OnProcessRun");  
-        IDIPCManager::Instance().CreateServer(m_acceptor);
+        dipcProcess->CreateServer(m_acceptor);
         m_acceptor->StartListen(this,1);
+    }
+    void OnBackUpProcessConnected(CAWAutoPtr<IDIPCTransport> &transport)
+    {
+        
     }
     virtual void OnConnectIndication(
         int aReason,

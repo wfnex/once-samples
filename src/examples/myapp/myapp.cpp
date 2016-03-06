@@ -1,22 +1,25 @@
-#include "IDIPC.h"
+#include "dipc.h"
 #include "IONCEMain.h"
 #include "CAWACEWrapper.h"
 
 //using namespace ACEWrapperNS;
 using namespace std;
 
-class CMyApp : public IONCEProcessSink
+class CMyApp : public IDIPCProcessSink
     ,public IDIPCAcceptorConnectorSink
     ,public IDIPCTransportSink
     ,public CAWTimerWrapperIDSink
     
 {
 public:
-    virtual void OnProcessRun()
+    virtual void OnProcessRun(int argc, char** argv, IDIPCProcess *dipcProcess)
     {
         printf("CMyApp::OnProcessRun");  
-        IDIPCManager::Instance().CreateServer(m_acceptor);
+        dipcProcess->CreateServer(m_acceptor);
         m_acceptor->StartListen(this,1);
+    }
+    void OnBackUpProcessConnected(CAWAutoPtr<IDIPCTransport> &transport)
+    {
     }
     virtual void OnConnectIndication(
         int aReason,
@@ -66,9 +69,9 @@ private:
 
 int main(int argc, char** argv)
 {
-	CAW_INFO_TRACE("ssss");
-	CAWString ss("issssss");
-	CAW_INFO_TRACE("ssdfdf:"<<ss);
+    CAW_INFO_TRACE("ssss");
+    CAWString ss("issssss");
+    CAW_INFO_TRACE("ssdfdf:"<<ss);
     CMyApp process;
     ONCEProcessRun(argc, argv, &process, 1000);
 }
